@@ -1,0 +1,35 @@
+.title-br{
+    width: 2%;
+    height: 3px;
+    margin-top: -4px;
+    color: #47616e;
+    opacity: 1;
+}
+
+.ml-3{
+    margin-left: 1rem;
+}
+.cy-button .btn{
+    
+        position: absolute;
+        top: 82%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: #555;
+        color: white;
+        font-size: 16px;
+        padding: 12px 24px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
+}
+.form-control-lg {
+    border-color: lightgray;
+}
+.cy-btn{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
