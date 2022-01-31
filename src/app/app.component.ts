@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -21,4 +22,12 @@ export class AppComponent {
     alert("Button is clicked");
     console.log(event);
  }
+ 
+ constructor() {}
+ ngOnInit() {
+  
+}
+onSubmit(contactForm: { value: any; }) {
+  console.log(contactForm.value);
+}
 }

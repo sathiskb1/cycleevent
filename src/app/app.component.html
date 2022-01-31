@@ -11,7 +11,7 @@
 </head>
 <body>
   
-  <nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-info">
+  <nav class="navbar navbar-expand-lg navbar-dark text-white c-nav" >
     <a class="navbar-brand" >
       Cycle 
     </a>
@@ -26,22 +26,28 @@
     [ngClass]="{ 'show': navbarOpen }">
  <ul class="navbar-nav mr-auto">
    <li class="nav-item">
-     <a class="nav-link" href="#img"  (click)="img.scrollIntoView({ behavior: 'smooth', block: 'start' })">Gallery</a>
+     <a class="nav-link text-white" href="#img"  (click)="img.scrollIntoView({ behavior: 'smooth', block: 'start' })">Gallery</a>
    </li>
 
    <li class="nav-item">
-     <a class="nav-link" href="#joinus"  (click)="joinus.scrollIntoView({ behavior: 'smooth', block: 'start' })">Register</a>
+     <a class="nav-link text-white" href="#joinus"  (click)="joinus.scrollIntoView({ behavior: 'smooth', block: 'start' })">Register</a>
    </li>
  </ul>
 </div>
-<button class="btn btn-success btn-lg" (click)="joinus.scrollIntoView({ behavior: 'smooth', block: 'start' })">Join Us</button>
+<button class="btn btn-success  px-5" (click)="joinus.scrollIntoView({ behavior: 'smooth', block: 'start' })">Join Us</button>
   </div>
   
 
   </nav>
   
- 
-  <div id="demo" class="carousel slide" data-bs-ride="carousel">
+  <!-- <div class="container">
+    <div class="row">
+      <div class="col-md-12 py-5">
+        <app-carousel></app-carousel>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
   
     <div class="carousel-inner">
@@ -53,9 +59,11 @@
     </div>
     
   
+  </div> -->
+  <div class="col-md-12 " >
+    <app-carousel></app-carousel>
   </div>
-  
-  <div class="container mt-3" #img>
+  <div class="container mt-3 cpt-4" #img>
     <h3>Event Image</h3>
   <hr class="title-br">
   </div>
@@ -204,7 +212,7 @@
     </div>
   </div>
 
-  <div class="container mt-3 " #joinus>
+  <div class="container mt-3 cpt-4" #joinus >
     <h3>Registration</h3>
     <hr class="title-br">
   
@@ -215,7 +223,7 @@
           <div class="col-12 col-lg-9 col-xl-7">
             <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
               <div class="card-body p-4 p-md-5">
-                <form>
+                <form  #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
     
                   <div class="row">
                     
@@ -223,7 +231,8 @@
     
                       <div class="form-outline">
                         <label class="form-label" for="firstName">First Name</label>
-                        <input type="text" id="firstName" class="form-control form-control-lg" />
+                        <input type="text" name="firstName"  class="form-control form-control-lg" ngModel required/>
+                        <span ng-show="ngForm.firstName.$touched && ngForm.firstName.$invalid" class="text-danger">The name is required.</span>
                        
                       </div>
     
@@ -232,7 +241,7 @@
     
                       <div class="form-outline">
                         <label class="form-label" for="lastName">Last Name</label>
-                        <input type="text" id="lastName" class="form-control form-control-lg" />
+                        <input type="text" id="lastName" name="lastname"  class="form-control form-control-lg" ngModel/>
                         
                       </div>
     
@@ -246,9 +255,9 @@
                         <label for="birthdayDate" class="form-label">Birthday</label>
                         
                         <input
-                          type="date"
+                          type="date" name="birthday" 
                           class="form-control form-control-lg"
-                          id="birthdayDate"
+                          id="birthdayDate" ngModel
                         />
                         
                       </div>
@@ -256,31 +265,10 @@
                     </div>
                     <div class="col-md-6 mb-4">
     
-                      <h6 class="mb-2 pb-1">Gender: </h6>
+                      <h6 class="mb-2 pb-1"><label for="gender">Geneder</label></h6>
     
-                      <div class="form-check form-check-inline">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="inlineRadioOptions"
-                          id="femaleGender"
-                          value="option1"
-                          checked
-                        />
-                        <label class="form-check-label" for="femaleGender">Female</label>
-                      </div>
-    
-                      <div class="form-check form-check-inline">
-                        <label class="form-check-label" for="maleGender">Male</label>
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="inlineRadioOptions"
-                          id="maleGender"
-                          value="option2"
-                        />
-                        
-                      </div>
+                      <input type="radio" value="male" name="gender" ngModel> Male
+                    <input type="radio" value="female" name="gender" ngModel> Female
     
                       
     
@@ -292,7 +280,7 @@
     
                       <div class="form-outline">
                         <label class="form-label" for="emailAddress">Email</label>
-                        <input type="email" id="emailAddress" class="form-control form-control-lg" />
+                        <input type="text" id="emailAddress"  name="emailAddress" class="form-control form-control-lg"  ngModel/>
                         
                       </div>
     
@@ -301,7 +289,7 @@
     
                       <div class="form-outline">
                         <label class="form-label" for="phoneNumber">Phone Number</label>
-                        <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
+                        <input type="tel" id="phoneNumber" name="phoneNumber"  class="form-control form-control-lg" ngModel/>
                         
                       </div>
     
@@ -310,7 +298,7 @@
                   <div class="row">
                     <div class="col-md-12">
                       <label class="form-label" for="phoneNumber">About Rider</label>
-                      <textarea ng-model="myName" class="form-control form-control-lg" required></textarea>
+                      <textarea ng-model="myName" name="phoneNumber" class="form-control form-control-lg" required ngModel></textarea>
                     </div>
                   </div>
     
@@ -319,19 +307,19 @@
                       <label class="form-label select-label">Choose option</label>
                       <div class="d-flex">
                         <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>
-                          <label class="form-check-label" for="check1">Rider</label>
+                          <input type="checkbox" class="form-check-input" for="rider" id="check1" name="option1" value="something" checked>
+                          <label class="form-check-label" name="rider" for="check1">Rider</label>
                         </div>
                         <div class="form-check ml-3">
-                          <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">
-                          <label class="form-check-label" for="check2">Volunteer </label>
+                          <input type="checkbox" class="form-check-input" for="volunteer" id="check2" name="option2" value="something">
+                          <label class="form-check-label" name="volunteer" for="check2">Volunteer </label>
                         </div>
                        
                       </div>
                     </div>
                     <div class="col-md-6 d-grid">
                       <label class="form-label select-label">Choose option</label>
-                      <select class="select form-outline form-control-lg">
+                      <select class="select form-outline form-control-lg" name="option">
                         <option value="1" disabled>Choose option</option>
                         <option value="2">2KM</option>
                         <option value="3">5KM</option>
@@ -344,7 +332,7 @@
                   </div>
     
                   <div class="mt-4 pt-2">
-                    <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                    <button class="btn btn-primary btn-lg w-100" type="submit"  value="Submit" >Submit</button>
                   </div>
     
                 </form>
